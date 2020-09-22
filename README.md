@@ -14,8 +14,7 @@ This API accepts an author name from an authenticated user and load data of all 
 ### Prerequisites
 
 1. Node.js and npm
-2. nodemon
-3. MySQL
+2. MySQL
 
 ### Install and start the application
 
