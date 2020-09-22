@@ -1,4 +1,5 @@
 const authResolver = require('./auth');
+const bookResolver = require('./book');
 
 module.exports = {
   createUser: (args, req) => {
@@ -11,5 +12,8 @@ module.exports = {
 
   loadBooks: (args, req) => {
     return authResolver.loadBooks(args, req);
+  },
+  books: (args, req) => {
+    return bookResolver.books(args, req);
   },
 };
