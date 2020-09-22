@@ -105,7 +105,7 @@ module.exports = {
       }
 
       const queryAuthor = author.replace(' ', '+');
-      const maxResults = 2;
+      const maxResults = 5;
       const response = await fetch(
         `${url}inauthor:${queryAuthor}&maxResults=${maxResults}&key=${API_KEY}`
       );
@@ -118,14 +118,13 @@ module.exports = {
           const newBook = await Book.create({
             bookId: book.id,
             title: book.volumeInfo.title,
-            categories: book.volumeInfo.categories,
+            categories: 'categories' in book.volumeInfo ? book.volumeInfo.categories : [],
             averageRating: book.volumeInfo.averageRating,
             printType: book.volumeInfo.printType,
             language: book.volumeInfo.language,
             publishedDate: book.volumeInfo.publishedDate,
             description: book.volumeInfo.description,
           });
-
           await createAuthors(newBook, authors);
 
           publisher = book.volumeInfo.publisher;
