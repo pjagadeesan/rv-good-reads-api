@@ -9,6 +9,7 @@ This API accepts an author name from an authenticated user and load data of all 
 
 - GraphQL API
 - Automatic model mapping through Sequelize
+- User Authentication and JWT authorization
 - Persistance for Books, Authors, Publishers and their relations using Sequelize and MySQL
 
 ### Prerequisites
