@@ -2,8 +2,8 @@
 
 ### Description
 
-A GraphQL API for loading book data from Google Books API using Node.js and express-graphql.
-This API accepts accepts an author name from an authenticated user and load all books data written by the author in to MySQL databse.
+A GraphQL API for loading books from Google Books API using Node.js and express-graphql.
+This API accepts accepts an author name from an authenticated user and load data of all books written by the author in to MySQL database.
 
 ### Features
 
@@ -31,6 +31,11 @@ This API accepts accepts an author name from an authenticated user and load all 
 ```
 http://localhost:8080/graphql
 ```
+
+### coming up next
+
+- add root queries to load all books and books written by the author
+- add mutation to bulk load data from Google Books API for multiple authors
 
 # Books API - Requirements
 
