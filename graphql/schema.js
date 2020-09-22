@@ -11,13 +11,41 @@ module.exports = buildSchema(`
         language: String!
         publishedDate: String!
         description: String!   
+        authors: [Author!]!
+        publisher: Publisher
+    }
+
+    type Author{
+        id: ID!
+        name: String!
+    }
+    type Publisher{
+        id: ID!
+        name: String!
+    }
+
+    type User {
+        id: ID!
+        name: String!
+        email: String!
+    }
+     input UserInputData {
+         email: String!
+         name: String!
+         password: String!
+     }
+
+     type AuthData {
+        userId: String!
+        token: String!
     }
 
     type RootQuery {
-        status: String!
+        login(email: String!, password:String!): AuthData!
     }
 
     type RootMutation{
+        createUser(userInput: UserInputData) : User!
         loadBooks(author: String!): [Book!]!
     }
 

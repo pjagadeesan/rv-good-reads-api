@@ -7,6 +7,7 @@ const sequelize = require('./util/database');
 const Book = require('./models/book');
 const Author = require('./models/author');
 const Publisher = require('./models/publisher');
+const auth = require('./middleware/auth');
 
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
@@ -18,8 +19,7 @@ app.use(cors());
 app.use(bodyParser.json()); //application/json
 
 //use auth middleware here
-
-//---------------------------------
+app.use(auth);
 
 app.use(
   '/graphql',
@@ -41,14 +41,14 @@ app.use(
 );
 
 app.use((error, req, res, next) => {
-  console.log(error);
+  console.error(error);
   res.status(error.statusCode).json({ message: error.message });
 });
 
 //define Book, Author, Publisher realtions
 Book.belongsToMany(Author, { through: 'booksauthors' });
 Author.belongsToMany(Book, { through: 'booksauthors' });
-Book.belongsToMany(Publisher, { through: 'bookspublishers' });
+Book.hasOne(Publisher, { through: 'bookspublishers' });
 Publisher.belongsToMany(Book, { through: 'bookspublishers' });
 
 sequelize
